@@ -31,12 +31,12 @@ public class ConnexionBDD
             // L'objet connexion à la BDD avec le nom de la base, le user et le password
             
             // VERSION A UTILISER SI VOUS AVEZ UN WINDOWS
-            //  cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_visiteurs?serverTimezone="
-            //  + TimeZone.getDefault().getID(), "root", "");
+              cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion_visiteurs?serverTimezone="
+              + TimeZone.getDefault().getID(), "root", "");
             
             // VERSION A UTILISER SI VOUS AVEZ UN MAC 
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost:8889/gestion_visiteurs?useSSL=false&serverTimezone="
-                    + TimeZone.getDefault().getID(), "root", "root");
+//            cnx = DriverManager.getConnection("jdbc:mysql://localhost:8889/gestion_visiteurs?useSSL=false&serverTimezone="
+//                    + TimeZone.getDefault().getID(), "root", "root");
         }
         catch (ClassNotFoundException ex)
         {

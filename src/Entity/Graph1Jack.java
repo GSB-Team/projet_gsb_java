@@ -8,6 +8,6 @@ package Entity;
  *
  * @author dimmi
  */
-public class DataGraphJack {
+public class Graph1Jack {
     
 }

@@ -4,6 +4,16 @@
  */
 package Vues;
 
+import Entity.Graph2Simon;
+import Entity.Graph3Dumitru;
+import Tools.ConnexionBDD;
+import Tools.FonctionsMetier;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author dim
@@ -36,19 +46,17 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         btnPRDNavStats = new javax.swing.JButton();
         btnDeconnexion = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        camenbert = new javax.swing.JButton();
+        btnCamembertJack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        histogrammetop = new javax.swing.JButton();
+        btnHistogrammeSimon = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        courbe = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        histogrammedown = new javax.swing.JButton();
+        btnCourbeDumitru = new javax.swing.JButton();
 
         jLabel4.setText("GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
 
         camenbert2.setText("VOIR");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -107,29 +115,30 @@ public class FrmPageStatistique extends javax.swing.JFrame {
 
         jLabel2.setText("GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
 
-        camenbert.setText("VOIR");
-        camenbert.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCamembertJack.setText("VOIR");
+        btnCamembertJack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                camenbertMouseClicked(evt);
-            }
-        });
-        camenbert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                camenbertActionPerformed(evt);
+                btnCamembertJackMouseClicked(evt);
             }
         });
 
-        jLabel3.setText("GRAPHIQUE DES REGIONS LES PLUS VISITÉS");
+        jLabel3.setText("GRAPHIQUE DES 10 REGIONS LES PLUS VISITÉS");
 
-        histogrammetop.setText("VOIR");
+        btnHistogrammeSimon.setText("VOIR");
+        btnHistogrammeSimon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistogrammeSimonMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setText("DUMITRUUUUUUUU");
+        jLabel5.setText("GRAPHIQUE DE NOMBRE DE VISITEURS PAR DATE D'EMBAUCHE");
 
-        courbe.setText("VOIR");
-
-        jLabel6.setText("GRAPHIQUE DES REGIONS LES MOINS VISITÉS");
-
-        histogrammedown.setText("VOIR");
+        btnCourbeDumitru.setText("VOIR");
+        btnCourbeDumitru.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCourbeDumitruMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,19 +168,15 @@ public class FrmPageStatistique extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(courbe))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(histogrammedown))
+                                .addComponent(btnCourbeDumitru))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(histogrammetop))
+                                .addComponent(btnHistogrammeSimon))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(60, 60, 60)
-                                .addComponent(camenbert)))))
+                                .addComponent(btnCamembertJack)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -189,20 +194,16 @@ public class FrmPageStatistique extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(camenbert))
+                    .addComponent(btnCamembertJack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(histogrammetop))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(histogrammedown))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnHistogrammeSimon))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courbe))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(btnCourbeDumitru))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,6 +220,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPRDNavVisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPRDNavVisMouseClicked
@@ -244,18 +246,60 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnPRDNavRegMouseClicked
 
-    private void camenbertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camenbertActionPerformed
+    private void btnCourbeDumitruMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCourbeDumitruMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_camenbertActionPerformed
+        
+        ConnexionBDD bdd = new ConnexionBDD();
+        FonctionsMetier fm = new FonctionsMetier();
+        
+        DefaultCategoryDataset source = new DefaultCategoryDataset();
+        for (Graph3Dumitru g3d  : fm.getGraph3())
+        {
+            source.setValue(g3d.getNbVisiteurs(), "courbe",g3d.getDate());
+        }
+        System.err.println(source.getRowCount());
+        JFreeChart chart3 = ChartFactory.createLineChart("Nombre de visiteurs par date ", "date", "nombre", source);
+        ChartFrame fra = new ChartFrame("Graphique nr*3 -- Dumitru", chart3);
+        fra.pack();
+        fra.setVisible(true);
+        
+    }//GEN-LAST:event_btnCourbeDumitruMouseClicked
 
-    private void camenbertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camenbertMouseClicked
+    private void btnHistogrammeSimonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistogrammeSimonMouseClicked
+        // TODO add your handling code here:
+        
+        ConnexionBDD bdd = new ConnexionBDD();
+        FonctionsMetier fm = new FonctionsMetier();
+        
+        DefaultCategoryDataset donnees = new DefaultCategoryDataset();
+
+        for (Graph2Simon dgs : fm.getGraph2())
+        {
+            //Double prix = Double.parseDouble(((String[])valeur.getValue())[1].toString());
+            //String nomTrader = ((String[])valeur.getValue())[0].toString();
+            //String nomAction = ((String[])valeur.getValue())[2].toString();
+            //donnees.setValue(prix,nomAction,nomTrader);
+            donnees.setValue(dgs.getTotal_visiteur(),dgs.getRegion_nom(),"");
+        }
+
+        JFreeChart chart1 = ChartFactory.createBarChart(
+            "Titre du graphique",
+            "",
+            "test",
+            donnees,
+            PlotOrientation.VERTICAL,
+            true, true, false);
+        ChartFrame frame = new ChartFrame("Graphique n°2 -- Simon", chart1);
+        frame.pack();
+        frame.setVisible(true);
+        
+    }//GEN-LAST:event_btnHistogrammeSimonMouseClicked
+
+    private void btnCamembertJackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCamembertJackMouseClicked
         // TODO add your handling code here:
         
         
-        
-        
-       
-    }//GEN-LAST:event_camenbertMouseClicked
+    }//GEN-LAST:event_btnCamembertJackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -293,21 +337,19 @@ public class FrmPageStatistique extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCamembertJack;
+    private javax.swing.JButton btnCourbeDumitru;
     private javax.swing.JButton btnDeconnexion;
+    private javax.swing.JButton btnHistogrammeSimon;
     private javax.swing.JButton btnPRDNavReg;
     private javax.swing.JButton btnPRDNavStats;
     private javax.swing.JButton btnPRDNavVis;
-    private javax.swing.JButton camenbert;
     private javax.swing.JButton camenbert2;
-    private javax.swing.JButton courbe;
-    private javax.swing.JButton histogrammedown;
-    private javax.swing.JButton histogrammetop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

@@ -4,6 +4,8 @@
  */
 package Tools;
 
+import Entity.Graph2Simon;
+import Entity.Graph3Dumitru;
 import Entity.Laboratoire;
 import Entity.Region;
 import Entity.Secteur;
@@ -287,6 +289,48 @@ public class FonctionsMetier implements IMetier
         }
     }
 
-
+    public ArrayList<Graph3Dumitru> getGraph3()
+    {
+        ArrayList<Graph3Dumitru> dataGraph3 = new ArrayList<>();
+        
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT COUNT(visiteur.vis_matricule), visiteur.vis_dateembauche FROM `visiteur` GROUP BY visiteur.vis_dateembauche;");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Graph3Dumitru gra3 = new Graph3Dumitru(rs.getString("visiteur.vis_dateembauche"), rs.getInt("COUNT(visiteur.vis_matricule)"));
+                dataGraph3.add(gra3);
+            }
+            ps.close();
+        } catch (Exception e) {
+        }    
+        return dataGraph3;
+    }
+    
+    public ArrayList<Graph2Simon> getGraph2()
+    {
+        ArrayList<Graph2Simon> datas = new ArrayList<>();
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT region.reg_nom, count(vis_matricule) as nbVisiteur\n" +
+                                                        "FROM `travailler`\n" +
+                                                        "INNER JOIN region on travailler.reg_code = region.reg_code \n" +
+                                                        "GROUP BY reg_nom \n" +
+                                                        "ORDER BY nbVisiteur  DESC LIMIT 0,10");
+            ResultSet rs = ps.executeQuery();
+        
+            while(rs.next())
+            {
+                Graph2Simon dgs = new Graph2Simon(rs.getString(1), rs.getInt(2));
+                datas.add(dgs);
+               
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return datas;
+    }
     
 }

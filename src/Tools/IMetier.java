@@ -34,5 +34,5 @@ public interface IMetier
     public void InsererTravailleur(int visMatricule, String regCode, String date, String role);
     public Region GetUnRegion(int unCode);
     public Visiteur GetUnVisiteur(int uneMatricule);
-    
+
 }
