@@ -26,6 +26,8 @@ public class FrmPageStatistique extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        camenbert2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -33,6 +35,18 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         btnPRDNavReg = new javax.swing.JButton();
         btnPRDNavStats = new javax.swing.JButton();
         btnDeconnexion = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        camenbert = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        histogrammetop = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        courbe = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        histogrammedown = new javax.swing.JButton();
+
+        jLabel4.setText("GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
+
+        camenbert2.setText("VOIR");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,12 +105,38 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
+
+        camenbert.setText("VOIR");
+        camenbert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                camenbertMouseClicked(evt);
+            }
+        });
+        camenbert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                camenbertActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("GRAPHIQUE DES REGIONS LES PLUS VISITÉS");
+
+        histogrammetop.setText("VOIR");
+
+        jLabel5.setText("DUMITRUUUUUUUU");
+
+        courbe.setText("VOIR");
+
+        jLabel6.setText("GRAPHIQUE DES REGIONS LES MOINS VISITÉS");
+
+        histogrammedown.setText("VOIR");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 89, Short.MAX_VALUE)
+                .addGap(0, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,8 +149,29 @@ public class FrmPageStatistique extends javax.swing.JFrame {
                         .addComponent(btnPRDNavStats, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnDeconnexion)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnDeconnexion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(courbe))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(histogrammedown))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(histogrammetop))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(60, 60, 60)
+                                .addComponent(camenbert)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,7 +186,23 @@ public class FrmPageStatistique extends javax.swing.JFrame {
                     .addComponent(btnPRDNavReg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPRDNavVis, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPRDNavStats, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(759, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(camenbert))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(histogrammetop))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(histogrammedown))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courbe))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,11 +211,11 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -166,6 +243,19 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnPRDNavRegMouseClicked
+
+    private void camenbertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camenbertActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_camenbertActionPerformed
+
+    private void camenbertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camenbertMouseClicked
+        // TODO add your handling code here:
+        
+        
+        
+        
+       
+    }//GEN-LAST:event_camenbertMouseClicked
 
     /**
      * @param args the command line arguments
@@ -207,7 +297,17 @@ public class FrmPageStatistique extends javax.swing.JFrame {
     private javax.swing.JButton btnPRDNavReg;
     private javax.swing.JButton btnPRDNavStats;
     private javax.swing.JButton btnPRDNavVis;
+    private javax.swing.JButton camenbert;
+    private javax.swing.JButton camenbert2;
+    private javax.swing.JButton courbe;
+    private javax.swing.JButton histogrammedown;
+    private javax.swing.JButton histogrammetop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
