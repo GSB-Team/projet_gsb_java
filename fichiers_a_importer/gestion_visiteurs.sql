@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2021 at 07:42 PM
+-- Generation Time: Mar 23, 2022 at 11:09 PM
 -- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,14 +85,14 @@ CREATE TABLE `region` (
 --
 
 INSERT INTO `region` (`reg_code`, `reg_nom`, `sec_code`) VALUES
-(13010, 'Auvergne-Rhône-Alpes', 13000),
+(13010, 'Dijon', 29000),
 (13020, 'Alpes-Cote d\'Azur', 13000),
 (13030, 'Provence', 13000),
 (13040, 'Midi-Pyrénées', 13000),
 (13050, 'Languedoc-Rousillon', 13000),
-(20100, 'Bastia', 59000),
+(20100, 'Lyon', 20000),
 (29160, 'Bretagne', 29000),
-(29250, 'Normandie', 29000),
+(29250, 'Normandie', 13000),
 (29340, 'Pays de la Loire', 29000),
 (29430, 'Limousin', 29000),
 (29520, 'Aquitaine', 29000),
@@ -108,12 +108,16 @@ INSERT INTO `region` (`reg_code`, `reg_nom`, `sec_code`) VALUES
 (65510, 'Bourgogne', 65000),
 (97220, 'Guadeloupe', 97000),
 (97440, 'Guyane', 97000),
-(97550, 'Réunion', 97000),
-(97551, 'test1', 13000),
-(97552, 'test2', 13000),
-(97553, 'test3', 59000),
-(97554, 'test4', 13000),
-(97555, 'Jack', 45000);
+(97550, 'Strasbourg', 97000),
+(97551, 'Orléans', 13000),
+(97552, 'Lille', 13000),
+(97553, 'Bretagne', 59000),
+(97554, 'Hauts-de-France', 13000),
+(97555, 'Nouvelle-Aquitaine', 45000),
+(97556, 'Occitanie', 65000),
+(97557, 'Pays de la Loire', 45000),
+(97558, 'Provence-Alpes-Côte d\'Azur', 65000),
+(97559, 'Côte d\'Azur', 45000);
 
 -- --------------------------------------------------------
 
@@ -160,12 +164,14 @@ INSERT INTO `travailler` (`vis_matricule`, `reg_code`, `aaaammjj`, `tra_role`) V
 (1, 13020, '2020-01-19', 'test2'),
 (1, 59130, '2021-12-18', 'médecin'),
 (2, 13030, '2018-10-17', 'test3'),
+(2, 13040, '2022-02-27', 'kinu'),
 (2, 65250, '2021-03-27', 'chef infir'),
 (2, 97220, '2021-02-17', 'testeur'),
 (3, 20100, '2021-05-08', 'chef de pe'),
 (3, 29160, '2021-04-12', 'médecin'),
 (4, 13010, '2021-06-14', 'testeur'),
 (4, 59220, '2021-07-03', 'chef infir'),
+(5, 13050, '2022-02-25', 'Briques'),
 (5, 45100, '2019-08-22', 'médecin'),
 (5, 97440, '2021-09-01', 'chef de pe'),
 (6, 29250, '2021-11-09', 'chef infir'),
@@ -209,6 +215,7 @@ INSERT INTO `travailler` (`vis_matricule`, `reg_code`, `aaaammjj`, `tra_role`) V
 (24, 29160, '2021-10-17', 'testeur'),
 (25, 13020, '2021-12-16', 'médecin'),
 (25, 59220, '2021-01-06', 'chef de pe'),
+(26, 13030, '2022-02-20', 'president'),
 (26, 45100, '2021-02-15', 'testeur'),
 (26, 45100, '2021-03-05', 'chef infir'),
 (27, 29430, '2021-05-04', 'chef de pe'),
@@ -219,7 +226,8 @@ INSERT INTO `travailler` (`vis_matricule`, `reg_code`, `aaaammjj`, `tra_role`) V
 (29, 29520, '2021-08-12', 'médecin'),
 (30, 29610, '2021-10-10', 'testeur'),
 (30, 59130, '2021-11-01', 'chef infir'),
-(31, 97551, '2019-07-03', 'test1');
+(31, 97551, '2019-07-03', 'test1'),
+(35, 65330, '2022-04-13', 'President');
 
 -- --------------------------------------------------------
 
@@ -268,13 +276,13 @@ CREATE TABLE `visiteur` (
 --
 
 INSERT INTO `visiteur` (`vis_matricule`, `vis_nom`, `vis_prenom`, `vis_adresse`, `vis_cp`, `vis_ville`, `vis_dateembauche`, `sec_code`, `lab_code`) VALUES
-(1, 'Blocuse', 'Michel', '1 rue Victor Schoelcher', 95200, 'Sarcelles', '2019-02-05', 45000, 23),
+(1, 'Blocuse', 'Michael', '1 rue Victor Schoelcher', 95200, 'Sarcelles', '2021-11-09', 29000, 23),
 (2, 'Coto', 'Allan', '43 rue Raspail ', 93100, 'Montreuil', '2021-01-18', 45000, 21),
 (3, 'Estaban', 'Pierre', '13 rue Victor Hugo', 13001, 'Marseille', '2021-01-18', 13000, 27),
 (4, 'Nackache', 'Alain', '6 rue bis Romain Gary', 59000, 'Lille', '2021-07-03', 59000, 29),
 (5, 'Simon', 'Jack', '5 rue des paris', 13001, 'Marseille', '2021-01-18', 13000, 23),
 (6, 'Martin', 'Julien', '28 rue des impasses', 92800, 'Fort-de-France', '2019-02-05', 97000, 30),
-(7, 'Bernard ', 'Eric', '6 rue bis Romain Gary', 20900, 'Bastia', '2021-03-08', 20000, 37),
+(7, 'Bernard ', 'Eric', '6 rue bis Romain Gary', 20900, 'Bastia', '2022-03-09', 65000, 48),
 (8, 'Thomas ', 'Philippe', '38 rue de la liberté', 93100, 'Montreuil', '2021-10-15', 45000, 45),
 (9, 'Petit', 'Kevin', '1 rue du père auteuil', 95200, 'Sarcelles', '2021-01-03', 45000, 23),
 (10, 'Robert ', 'Luc', '2 bis avenue vienne', 13001, 'Marseille', '2020-02-05', 13000, 33),
@@ -298,10 +306,13 @@ INSERT INTO `visiteur` (`vis_matricule`, `vis_nom`, `vis_prenom`, `vis_adresse`,
 (28, 'Ricki ', 'Rubio', '62 rue du roi', 1300, 'Marseille', '2020-01-10', 13000, 31),
 (29, 'Santo, ', 'Vito', '90 rue champs du moine', 92800, 'Puteaux', '2019-07-14', 45000, 41),
 (30, 'Savastanos ', 'Luc', '75 rue pierre', 13800, 'Istre', '2019-05-20', 65000, 31),
-(31, 'testNom', 'testPrenom', 'testAdresse', 59000, 'Lille', '2018-01-22', 45000, 29),
-(32, 'testNom2', 'testPrenom2', 'testAdresse2', 40000, 'Mont De Marsan', '2014-09-04', 20000, 26),
-(33, 'testNom3', 'testprenom3', 'testAdresse3', 92800, 'Fort-de-France', '2019-07-03', 59000, 49),
-(34, 'tik', 'tik', 'tiktak', 92800, 'Fort-de-France', '2018-09-02', 29000, 28);
+(31, 'Test1', 'Test1', 'testAdresse1', 59000, 'Lille', '2018-01-22', 45000, 29),
+(32, 'Test2', 'Test2', 'testAdresse2', 40000, 'Mont De Marsan', '2014-09-04', 20000, 26),
+(33, 'Test3', 'Test3', 'testAdresse3', 92800, 'Fort-de-France', '2019-07-03', 59000, 49),
+(34, 'Test4', 'Test4', 'TestAdresse4', 92800, 'Fort-de-France', '2018-09-02', 29000, 28),
+(35, 'Sebban', 'Nathane', '4B Rue de Lille', 59000, 'Lille', '2016-06-09', 59000, 41),
+(36, 'Test5', 'Test5', 'TestAdresse5', 92800, 'Fort-de-France', '2022-02-24', 59000, 47),
+(37, 'Test6', 'Test6', 'TestAdresse6', 92800, 'Fort-de-France', '2020-04-20', 97000, 43);
 
 --
 -- Indexes for dumped tables
