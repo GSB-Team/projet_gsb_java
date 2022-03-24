@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2022 at 11:09 PM
+-- Generation Time: Mar 24, 2022 at 09:48 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -282,7 +282,7 @@ INSERT INTO `visiteur` (`vis_matricule`, `vis_nom`, `vis_prenom`, `vis_adresse`,
 (4, 'Nackache', 'Alain', '6 rue bis Romain Gary', 59000, 'Lille', '2021-07-03', 59000, 29),
 (5, 'Simon', 'Jack', '5 rue des paris', 13001, 'Marseille', '2021-01-18', 13000, 23),
 (6, 'Martin', 'Julien', '28 rue des impasses', 92800, 'Fort-de-France', '2019-02-05', 97000, 30),
-(7, 'Bernard ', 'Eric', '6 rue bis Romain Gary', 20900, 'Bastia', '2022-03-09', 65000, 48),
+(7, 'Bernard ', 'Eric', '6 rue bis Romain Gary', 20900, 'Bastia', '2021-03-08', 20000, 37),
 (8, 'Thomas ', 'Philippe', '38 rue de la liberté', 93100, 'Montreuil', '2021-10-15', 45000, 45),
 (9, 'Petit', 'Kevin', '1 rue du père auteuil', 95200, 'Sarcelles', '2021-01-03', 45000, 23),
 (10, 'Robert ', 'Luc', '2 bis avenue vienne', 13001, 'Marseille', '2020-02-05', 13000, 33),

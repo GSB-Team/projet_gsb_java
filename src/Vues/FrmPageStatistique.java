@@ -8,11 +8,13 @@ import Entity.Graph2Simon;
 import Entity.Graph3Dumitru;
 import Tools.ConnexionBDD;
 import Tools.FonctionsMetier;
+import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -297,7 +299,26 @@ public class FrmPageStatistique extends javax.swing.JFrame {
 
     private void btnCamembertJackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCamembertJackMouseClicked
         // TODO add your handling code here:
+        ConnexionBDD bdd = new ConnexionBDD();
+        FonctionsMetier fm = new FonctionsMetier();
         
+        DefaultPieDataset donnees = new DefaultPieDataset();
+        
+        for (Map.Entry valeur : fm.getGraph1().entrySet())
+        {
+            donnees.setValue(valeur.getKey().toString(), Integer.parseInt(valeur.getValue().toString()));
+        }
+
+        JFreeChart chart1 = ChartFactory.createPieChart(
+        "Nombre de régions par secteur",
+        donnees,
+        true, // légende
+        true, // info bulle
+        true // url
+        );
+        ChartFrame frame = new ChartFrame("Graphique n°2", chart1);
+        frame.pack();
+        frame.setVisible(true);
         
     }//GEN-LAST:event_btnCamembertJackMouseClicked
 

@@ -167,11 +167,11 @@ public class FrmPageAccueil extends javax.swing.JFrame
         // TODO add your handling code here:
         if(txtPAId.getText().compareTo("") == 0)
         {
-            JOptionPane.showMessageDialog(this, "Vous devez saisir un identifiant!!!", "ATTENTION", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vous devez saisir un identifiant ", "ATTENTION", JOptionPane.ERROR_MESSAGE);
         }
         else if(txtPAMdp.getText().compareTo("") == 0)
         {
-            JOptionPane.showMessageDialog(this, "Vous devez saisir un mot de passe!!!", "ATTENTION", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vous devez saisir un mot de passe ", "ATTENTION", JOptionPane.ERROR_MESSAGE);
         }
         else
         {

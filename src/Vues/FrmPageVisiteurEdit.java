@@ -357,7 +357,7 @@ public class FrmPageVisiteurEdit extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(this, Integer.parseInt(lab[0]));
         
         fm.ModifierVisiteur(Integer.parseInt(matricule), nom, prenom, adresse, Integer.parseInt(codePostal), ville, formatDate, Integer.parseInt(sec[0]), Integer.parseInt(lab[0]));
-        JOptionPane.showMessageDialog(this, "La requette a marcher. Donc va verifier la bdd. OK");
+        JOptionPane.showMessageDialog(this, "La modification a fonctionner");
        
         FrmPageVisiteurDefault frm = new FrmPageVisiteurDefault();
         frm.setVisible(true);

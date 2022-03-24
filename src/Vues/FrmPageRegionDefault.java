@@ -238,7 +238,7 @@ public class FrmPageRegionDefault extends javax.swing.JFrame {
 //        JOptionPane.showMessageDialog(this, row, "INFOS", JOptionPane.INFORMATION_MESSAGE);
         if (row == -1) 
         {
-            JOptionPane.showMessageDialog(this, "Vous devez choisir un utilisateur!!!", "INFOS", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Veuillez choisir un utilisateur ", "INFOS", JOptionPane.INFORMATION_MESSAGE);
         }else
         {
             indice = tblPRDReg.getValueAt(row, column).toString();

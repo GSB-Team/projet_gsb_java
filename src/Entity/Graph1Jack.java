@@ -8,6 +8,37 @@ package Entity;
  *
  * @author dimmi
  */
-public class Graph1Jack {
+public class Graph1Jack 
+{
+    private String regNom;
+    private int regCode;
+    private int secCode;
     
+    public Graph1Jack(String unRegNom, int unRegCode, int unSecCode)
+    {
+        regNom = unRegNom;
+        regCode = unRegCode;
+        secCode = unSecCode;
+    }
+
+    /**
+     * @return the regNom
+     */
+    public String getRegNom() {
+        return regNom;
+    }
+
+    /**
+     * @return the regCode
+     */
+    public int getRegCode() {
+        return regCode;
+    }
+
+    /**
+     * @return the secCode
+     */
+    public int getSecCode() {
+        return secCode;
+    }
 }

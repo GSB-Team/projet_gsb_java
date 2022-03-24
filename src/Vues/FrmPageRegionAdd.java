@@ -162,7 +162,7 @@ public class FrmPageRegionAdd extends javax.swing.JFrame {
             String[] mot = aa.split(" -- ");
             
             fm.InsererRegion(Integer.parseInt(txtPRACodeReg.getText()), txtPRANomReg.getText(), Integer.parseInt(mot[0]));
-            JOptionPane.showMessageDialog(this, "La requette a marcher. Donc va verifier la bdd. OK");
+            JOptionPane.showMessageDialog(this, "L'insertion a fonctionner");
 
             FrmPageRegionDefault frm = new FrmPageRegionDefault();
             frm.setVisible(true);

@@ -299,15 +299,15 @@ public class FrmPageVisiteurAdd extends javax.swing.JFrame {
         
         if(txtPVANom.getText().compareTo("") == 0)
         {
-            JOptionPane.showMessageDialog(this,"Vous devez saisir un nom","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Veuillez saisir un nom","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
         }
         else if(txtPVAPrenom.getText().compareTo("") == 0)
         {
-            JOptionPane.showMessageDialog(this,"Vous devez saisir un prénom","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Veuillez saisir un prénom","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
         }
         else if(txtPVAAdresse.getText().compareTo("") == 0)
         {
-            JOptionPane.showMessageDialog(this,"Vous devez saisir une adresse","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Veuillez saisir une adresse","Erreur de saisie",JOptionPane.ERROR_MESSAGE);
         }
         else 
         {
@@ -324,7 +324,7 @@ public class FrmPageVisiteurAdd extends javax.swing.JFrame {
             String formatDate = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
             
             fm.InsererVisiteur(Integer.parseInt(txtPVACodeMatricule.getText()), txtPVANom.getText(), txtPVAPrenom.getText(), txtPVAAdresse.getText(), Integer.parseInt(cboPVACodePostal.getSelectedItem().toString()), txtPVAVille.getText(), formatDate, Integer.parseInt(sec[0]), Integer.parseInt(lab[0]));
-            JOptionPane.showMessageDialog(this, "La requette a marcher. Donc va verifier la bdd. OK");
+            JOptionPane.showMessageDialog(this, "L'insertion a fonctionner");
             
             FrmPageVisiteurDefault frm = new FrmPageVisiteurDefault();
             frm.setVisible(true);

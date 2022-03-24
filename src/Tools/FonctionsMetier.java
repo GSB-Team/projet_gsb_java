@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -330,6 +331,28 @@ public class FonctionsMetier implements IMetier
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        return datas;
+    }
+    
+    public HashMap<String,Integer> getGraph1() 
+    {
+        HashMap<String, Integer> datas = new HashMap();
+        
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT secteur.sec_libelle, region.sec_code, count(reg_code) as nbRegion \n" +
+                                                        "    FROM `region` \n" +
+                                                        "    INNER JOIN secteur on region.sec_code = secteur.sec_code \n" +
+                                                        "    GROUP BY sec_code");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                datas.put(rs.getString(1), rs.getInt(2));
+            }
+            rs.close();
+        } catch (Exception e) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, e);
+        }
         return datas;
     }
     

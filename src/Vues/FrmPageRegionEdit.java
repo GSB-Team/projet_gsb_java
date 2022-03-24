@@ -178,7 +178,7 @@ public class FrmPageRegionEdit extends javax.swing.JFrame {
         String[] mot = codeSecteur.split(" -- ");
         
         fm.ModifierRegion(Integer.parseInt(codeRegion), nomRegion, Integer.parseInt(mot[0]));
-        JOptionPane.showMessageDialog(this, "La requette a marcher. Donc va verifier la bdd. OK");
+        JOptionPane.showMessageDialog(this, "La modification a fonctionner");
         
         FrmPageRegionDefault frm = new FrmPageRegionDefault();
         frm.setVisible(true);
