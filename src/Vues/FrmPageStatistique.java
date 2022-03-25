@@ -133,7 +133,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("GRAPHIQUE DE NOMBRE DE VISITEURS PAR DATE D'EMBAUCHE");
+        jLabel5.setText("GRAPHIQUE DU NOMBRE DE VISITEURS PAR DATE D'EMBAUCHE");
 
         btnCourbeDumitru.setText("VOIR");
         btnCourbeDumitru.addMouseListener(new java.awt.event.MouseAdapter() {
