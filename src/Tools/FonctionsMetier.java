@@ -12,6 +12,7 @@ import Entity.Secteur;
 import Entity.Travailler;
 import Entity.User;
 import Entity.Visiteur;
+import java.awt.Dimension;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -220,16 +221,6 @@ public class FonctionsMetier implements IMetier
         return nomVille;
     }
 
-    @Override
-    public void InsererTravailleur(int visMatricule, String regCode, String date, String role) {
-        try {
-            Connection cnx = ConnexionBDD.getCnx();
-            PreparedStatement ps = cnx.prepareStatement("insert into travailler values("+visMatricule+", "+regCode+", '"+date+"', '"+role+"' )");
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     @Override
     public Region GetUnRegion(int unCode) {
@@ -296,7 +287,10 @@ public class FonctionsMetier implements IMetier
         
         try {
             Connection cnx = ConnexionBDD.getCnx();
-            PreparedStatement ps = cnx.prepareStatement("SELECT COUNT(visiteur.vis_matricule), visiteur.vis_dateembauche FROM `visiteur` GROUP BY visiteur.vis_dateembauche;");
+            PreparedStatement ps = cnx.prepareStatement("SELECT COUNT(visiteur.vis_matricule), visiteur.vis_dateembauche \n" +
+                                                        "FROM `visiteur` \n" +
+                                                        "GROUP BY visiteur.vis_dateembauche\n" +
+                                                        "ORDER BY visiteur.vis_dateembauche  DESC LIMIT 0,10;");
             ResultSet rs = ps.executeQuery();
             while(rs.next())
             {
@@ -355,5 +349,155 @@ public class FonctionsMetier implements IMetier
         }
         return datas;
     }
+
+    @Override
+    public Secteur GetUnSecteurRegion(int regCode) {
+        Secteur unSecteur = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT region.sec_code, secteur.sec_libelle FROM region INNER JOIN secteur ON region.sec_code = secteur.sec_code WHERE reg_code = " + regCode + "");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+//                unSecteur = new Visiteur(rs.getInt("vis_matricule"), rs.getString("vis_nom"), rs.getString("vis_prenom"), rs.getString("vis_adresse"), rs.getInt("vis_cp"), rs.getString("vis_ville"), rs.getString("vis_dateembauche"), rs.getInt("sec_code"), rs.getInt("lab_code"));
+                unSecteur = new Secteur(rs.getInt("sec_code"), rs.getString("sec_libelle"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unSecteur;
+    }
+
+    @Override
+    public Region GetUnRegion(String unNom) {
+        Region unRegion = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("select reg_code, reg_nom, sec_code from region where reg_nom =  '" + unNom+"'");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                unRegion = new Region(rs.getInt("reg_code"), rs.getString("reg_nom"), rs.getInt("sec_code"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unRegion;
+    }
+
+    @Override
+    public Secteur GetUnSecteurVisiteur(int secCode) {
+        Secteur unSecteur = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT secteur.sec_code, secteur.sec_libelle FROM secteur WHERE sec_code = " + secCode);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+//                unSecteur = new Visiteur(rs.getInt("vis_matricule"), rs.getString("vis_nom"), rs.getString("vis_prenom"), rs.getString("vis_adresse"), rs.getInt("vis_cp"), rs.getString("vis_ville"), rs.getString("vis_dateembauche"), rs.getInt("sec_code"), rs.getInt("lab_code"));
+                unSecteur = new Secteur(rs.getInt("sec_code"), rs.getString("sec_libelle"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unSecteur;
+    }
+
+    @Override
+    public Laboratoire GetUnLaboratoireVisiteur(int labCode) {
+        Laboratoire unLabo = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT labo.lab_code, labo.lab_nom, labo.lab_chefvente FROM labo WHERE lab_code = " + labCode);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                unLabo = new Laboratoire(rs.getInt("lab_code"), rs.getString("lab_nom"), rs.getString("lab_chefvente"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unLabo;
+    }
+
+    @Override
+    public Travailler GetUnTravailleur(int visId, int unCodeReg, String uneDate) {
+        Travailler unTrava = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT visiteur.vis_matricule, region.reg_code, travailler.aaaammjj, travailler.tra_role\n" +
+                                                        "FROM travailler\n" +
+                                                        "INNER JOIN visiteur ON travailler.vis_matricule = visiteur.vis_matricule\n" +
+                                                        "INNER JOIN region ON travailler.reg_code = region.reg_code\n" +
+                                                        "WHERE visiteur.vis_matricule = "+visId+" AND region.reg_code = "+unCodeReg+" AND travailler.aaaammjj LIKE '"+uneDate+"'");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                unTrava = new Travailler(rs.getInt("vis_matricule"), rs.getInt("reg_code"), rs.getString("aaaammjj"), rs.getString("tra_role"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unTrava;
+    }
+
+    @Override
+    public void InsererTravailleur(int visMatricule, int regCode, String date, String role) {
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("insert into travailler values("+visMatricule+", "+regCode+", '"+date+"', '"+role+"' )");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public Dimension getPreferredSize(int largeur, int hauteur) {
+        return new Dimension(largeur, hauteur);
+    }
+
+    @Override
+    public Visiteur GetUnVisiteur(String nom, String prenom, int codePostal, String adresse) {
+        Visiteur unVisiteur = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT vis_matricule, vis_nom, vis_prenom, vis_adresse, vis_cp, vis_ville, vis_dateembauche, sec_code, lab_code FROM visiteur WHERE vis_nom =  '" + nom + "' AND vis_prenom = '"+prenom+"' AND vis_cp = "+codePostal+" AND vis_adresse = '"+adresse+"'");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                unVisiteur = new Visiteur(rs.getInt("vis_matricule"), rs.getString("vis_nom"), rs.getString("vis_prenom"), rs.getString("vis_adresse"), rs.getInt("vis_cp"), rs.getString("vis_ville"), rs.getString("vis_dateembauche"), rs.getInt("sec_code"), rs.getInt("lab_code"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unVisiteur;
+    }
+
+    @Override
+    public Visiteur GetUnVisiteur(String nom, String prenom, String adresse) {
+        Visiteur unVisiteur = null;
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT vis_matricule, vis_nom, vis_prenom, vis_adresse, vis_cp, vis_ville, vis_dateembauche, sec_code, lab_code FROM visiteur WHERE vis_nom =  '" + nom + "' AND vis_prenom = '"+prenom+"' AND vis_adresse = '"+adresse+"'");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                unVisiteur = new Visiteur(rs.getInt("vis_matricule"), rs.getString("vis_nom"), rs.getString("vis_prenom"), rs.getString("vis_adresse"), rs.getInt("vis_cp"), rs.getString("vis_ville"), rs.getString("vis_dateembauche"), rs.getInt("sec_code"), rs.getInt("lab_code"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unVisiteur;
+    }
+
+   
     
 }

@@ -84,10 +84,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnCourbeDumitru" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCamembertJack" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -95,14 +95,14 @@
                                   <Component id="btnHistogrammeSimon" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                  <Component id="btnCamembertJack" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnCourbeDumitru" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="129" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -249,7 +249,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS"/>
+            <Property name="text" type="java.lang.String" value="GRAPHIQUE : NOMBRE DE REGIONS AU TOTAL PAR SECTEURS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCamembertJack">
@@ -262,7 +262,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GRAPHIQUE DES 10 REGIONS LES PLUS VISIT&#xc9;S"/>
+            <Property name="text" type="java.lang.String" value="GRAPHIQUE : 10 REGIONS LES PLUS VISIT&#xc9;ES"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnHistogrammeSimon">
@@ -275,7 +275,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="GRAPHIQUE DU NOMBRE DE VISITEURS PAR DATE D&apos;EMBAUCHE"/>
+            <Property name="text" type="java.lang.String" value="GRAPHIQUE : NOMBRE DE VISITEURS PAR DATE D&apos;EMBAUCHE DES 10 DERNIERS JOURS"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCourbeDumitru">

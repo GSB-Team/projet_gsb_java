@@ -8,6 +8,7 @@ import Entity.Graph2Simon;
 import Entity.Graph3Dumitru;
 import Tools.ConnexionBDD;
 import Tools.FonctionsMetier;
+import java.awt.Dimension;
 import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -115,7 +116,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("GRAPHIQUE DU NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
+        jLabel2.setText("GRAPHIQUE : NOMBRE DE REGIONS AU TOTAL PAR SECTEURS");
 
         btnCamembertJack.setText("VOIR");
         btnCamembertJack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,7 +125,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("GRAPHIQUE DES 10 REGIONS LES PLUS VISITÉS");
+        jLabel3.setText("GRAPHIQUE : 10 REGIONS LES PLUS VISITÉES");
 
         btnHistogrammeSimon.setText("VOIR");
         btnHistogrammeSimon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,7 +134,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("GRAPHIQUE DU NOMBRE DE VISITEURS PAR DATE D'EMBAUCHE");
+        jLabel5.setText("GRAPHIQUE : NOMBRE DE VISITEURS PAR DATE D'EMBAUCHE DES 10 DERNIERS JOURS");
 
         btnCourbeDumitru.setText("VOIR");
         btnCourbeDumitru.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,18 +169,18 @@ public class FrmPageStatistique extends javax.swing.JFrame {
                         .addGap(109, 109, 109)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCourbeDumitru))
+                                .addComponent(btnCamembertJack))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnHistogrammeSimon))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(60, 60, 60)
-                                .addComponent(btnCamembertJack)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCourbeDumitru)))))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,13 +256,16 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         FonctionsMetier fm = new FonctionsMetier();
         
         DefaultCategoryDataset source = new DefaultCategoryDataset();
+        
         for (Graph3Dumitru g3d  : fm.getGraph3())
         {
-            source.setValue(g3d.getNbVisiteurs(), "courbe",g3d.getDate());
+            source.setValue(g3d.getNbVisiteurs(), "La ligne rouge montre le nombre de visiteurs embauché en fonction de sa date pour les 10 derniers jours",g3d.getDate());
         }
-        System.err.println(source.getRowCount());
-        JFreeChart chart3 = ChartFactory.createLineChart("Nombre de visiteurs par date ", "date", "nombre", source);
-        ChartFrame fra = new ChartFrame("Graphique nr*3 -- Dumitru", chart3);
+//        System.err.println(source.getRowCount());
+        JFreeChart chart3 = ChartFactory.createLineChart("Nombre de visiteurs embauchés pour les 10 dernières dates d'embauche", "Date d'embauche", "Nombre de visiteurs embauché", source);
+        ChartFrame fra = new ChartFrame("Graphique n°3 -- Dumitru", chart3);
+        Dimension preferredSize = new Dimension(1000, 500);
+        fra.setPreferredSize(preferredSize);
         fra.pack();
         fra.setVisible(true);
         
@@ -277,17 +281,13 @@ public class FrmPageStatistique extends javax.swing.JFrame {
 
         for (Graph2Simon dgs : fm.getGraph2())
         {
-            //Double prix = Double.parseDouble(((String[])valeur.getValue())[1].toString());
-            //String nomTrader = ((String[])valeur.getValue())[0].toString();
-            //String nomAction = ((String[])valeur.getValue())[2].toString();
-            //donnees.setValue(prix,nomAction,nomTrader);
             donnees.setValue(dgs.getTotal_visiteur(),dgs.getRegion_nom(),"");
         }
 
         JFreeChart chart1 = ChartFactory.createBarChart(
-            "Titre du graphique",
+            "Top 10 régions les plus visitées",
             "",
-            "test",
+            "Nombre des visiteurs",
             donnees,
             PlotOrientation.VERTICAL,
             true, true, false);
@@ -316,7 +316,7 @@ public class FrmPageStatistique extends javax.swing.JFrame {
         true, // info bulle
         true // url
         );
-        ChartFrame frame = new ChartFrame("Graphique n°2", chart1);
+        ChartFrame frame = new ChartFrame("Graphique n°1 -- Jack", chart1);
         frame.pack();
         frame.setVisible(true);
         

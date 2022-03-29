@@ -53,6 +53,7 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
         cboPVRVis = new javax.swing.JComboBox<>();
         btnDeconnexion = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -130,6 +131,10 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("L'ensemble des actions réalisées par les visiteurs");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel6.setText("Attention!!! Le visiteur peut avoir seulement un rôle par jour.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -162,9 +167,11 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -198,7 +205,9 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jCalendarPVRDate, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
                         .addComponent(btnPVRValider, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5)
@@ -259,21 +268,43 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
             int month = jCalendarPVRDate.getMonthChooser().getMonth() + 1;
             int day = jCalendarPVRDate.getDayChooser().getDay();
             
+            String formatDate = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
+            
             String aa = cboPVRVis.getSelectedItem().toString();
             String[] vis = aa.split(" -- ");
             
             String bb = cboPVRReg.getSelectedItem().toString();
             String[] sec = bb.split(" -- ");
             
-            String formatDate = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
+            String role = txtPVRRole.getText().toString();
             
+//            Formatter un peu le format du mois
+            if (String.valueOf(month).length() == 1) {
+                formatDate = String.valueOf(year) + "-0" + String.valueOf(month) + "-" + String.valueOf(day);
+                System.out.println("La valeur est de taille 1");
+            }
+
+            System.out.println(Integer.parseInt(vis[0]));
+            System.out.println(Integer.parseInt(sec[0]));
+            System.out.println(formatDate);
+            System.out.println(role);
             
-            fm.InsererTravailleur(Integer.parseInt(vis[0]), sec[0], formatDate, txtPVRRole.getText().toString());
-            JOptionPane.showMessageDialog(this, "La requette a marcher. Donc va verifier le tableau. OK");
+//            Verifier si le travailleur existe déjà
+            Travailler tra = fm.GetUnTravailleur(Integer.parseInt(vis[0]), Integer.parseInt(sec[0]), formatDate);
+//            System.out.println(tra.getDate());
             
-            mdlInfos = new ModelPageVisiteurRegionInfos();
-            mdlInfos.loadDatas(fm.GetListTravail());
-            tblPVRInfos.setModel(mdlInfos);
+            if (tra != null) 
+            {
+                JOptionPane.showMessageDialog(this, "Le travailleur est déjà occupé pour cette date. Merci de choisir une autre date.");
+            }
+            else
+            {          
+                fm.InsererTravailleur(Integer.parseInt(vis[0]), Integer.parseInt(sec[0]), formatDate, role);
+            
+                mdlInfos = new ModelPageVisiteurRegionInfos();
+                mdlInfos.loadDatas(fm.GetListTravail());
+                tblPVRInfos.setModel(mdlInfos);
+            }
         }
         
     }//GEN-LAST:event_btnPVRValiderMouseClicked
@@ -333,6 +364,7 @@ public class FrmPageVisiteurRegion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane4;

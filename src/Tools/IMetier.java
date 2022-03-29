@@ -10,6 +10,7 @@ import Entity.Secteur;
 import Entity.Travailler;
 import Entity.User;
 import Entity.Visiteur;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 /**
@@ -31,8 +32,16 @@ public interface IMetier
     public int GetLastRegCode();
     public int GetLastMatriculeCode();
     public String GetNomVille(int codePostal);
-    public void InsererTravailleur(int visMatricule, String regCode, String date, String role);
+    public void InsererTravailleur(int visMatricule, int regCode, String date, String role);
+    public Travailler GetUnTravailleur(int visId, int unCodeReg, String uneDate);
     public Region GetUnRegion(int unCode);
+    public Region GetUnRegion(String unNom);
     public Visiteur GetUnVisiteur(int uneMatricule);
+    public Visiteur GetUnVisiteur(String nom, String prenom, int codePostal, String adresse);
+    public Visiteur GetUnVisiteur(String nom, String prenom, String adresse);
+    public Secteur GetUnSecteurRegion (int regCode);
+    public Secteur GetUnSecteurVisiteur(int secCode);
+    public Laboratoire GetUnLaboratoireVisiteur(int labCode);
+    public Dimension getPreferredSize(int largeur, int hauteur);
 
 }

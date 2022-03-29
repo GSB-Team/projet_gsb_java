@@ -5,6 +5,7 @@
  */
 package Vues;
 
+import Entity.Region;
 import Entity.Secteur;
 import Model.ModelPageRegionD;
 import Tools.FonctionsMetier;
@@ -161,12 +162,20 @@ public class FrmPageRegionAdd extends javax.swing.JFrame {
             String aa = cboPRANomSec.getSelectedItem().toString();
             String[] mot = aa.split(" -- ");
             
-            fm.InsererRegion(Integer.parseInt(txtPRACodeReg.getText()), txtPRANomReg.getText(), Integer.parseInt(mot[0]));
-            JOptionPane.showMessageDialog(this, "L'insertion a fonctionner");
+            Region reg = fm.GetUnRegion(txtPRANomReg.getText());
+            if (reg != null) {
+                JOptionPane.showMessageDialog(this, "Une région avec ce nom existe déjà. Merci de saisir un autre nom.");
+            }
+            else
+            {
+                fm.InsererRegion(Integer.parseInt(txtPRACodeReg.getText()), txtPRANomReg.getText(), Integer.parseInt(mot[0]));
 
-            FrmPageRegionDefault frm = new FrmPageRegionDefault();
-            frm.setVisible(true);
-            this.setVisible(false);
+                FrmPageRegionDefault frm = new FrmPageRegionDefault();
+                frm.setVisible(true);
+                this.setVisible(false);
+            }
+            
+//            
         }
     }//GEN-LAST:event_btnPRASauvegarderMouseClicked
 

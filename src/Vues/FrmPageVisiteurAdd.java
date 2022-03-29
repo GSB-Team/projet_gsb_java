@@ -323,14 +323,19 @@ public class FrmPageVisiteurAdd extends javax.swing.JFrame {
             
             String formatDate = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
             
-            fm.InsererVisiteur(Integer.parseInt(txtPVACodeMatricule.getText()), txtPVANom.getText(), txtPVAPrenom.getText(), txtPVAAdresse.getText(), Integer.parseInt(cboPVACodePostal.getSelectedItem().toString()), txtPVAVille.getText(), formatDate, Integer.parseInt(sec[0]), Integer.parseInt(lab[0]));
-            JOptionPane.showMessageDialog(this, "L'insertion a fonctionner");
+            Visiteur vis = fm.GetUnVisiteur(txtPVANom.getText(), txtPVAPrenom.getText(), Integer.parseInt(cboPVACodePostal.getSelectedItem().toString()), txtPVAAdresse.getText());
+            if (vis != null) {
+                JOptionPane.showMessageDialog(this, "Ce visiteur existe déjà. Merci de modifier les cellules suivantes : Nom, Prénom et Adresse.");
+            }
+            else
+            {
+                fm.InsererVisiteur(Integer.parseInt(txtPVACodeMatricule.getText()), txtPVANom.getText(), txtPVAPrenom.getText(), txtPVAAdresse.getText(), Integer.parseInt(cboPVACodePostal.getSelectedItem().toString()), txtPVAVille.getText(), formatDate, Integer.parseInt(sec[0]), Integer.parseInt(lab[0]));
             
-            FrmPageVisiteurDefault frm = new FrmPageVisiteurDefault();
-            frm.setVisible(true);
-            this.setVisible(false);
+                FrmPageVisiteurDefault frm = new FrmPageVisiteurDefault();
+                frm.setVisible(true);
+                this.setVisible(false);
+            }
         }
-        
     }//GEN-LAST:event_btnPVASauvegarderMouseClicked
 
     /**
